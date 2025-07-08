@@ -28,3 +28,7 @@ func PrettyPrint(list []int) {
 func PrintAppendMessage() {
 	fmt.Println("Insert the value to be appended to the slice")
 }
+
+func PrintPreppendMessage() {
+	fmt.Println("Insert the value to be prepended to the slice")
+}
