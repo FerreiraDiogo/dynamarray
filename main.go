@@ -51,49 +51,32 @@ func selectOption(input int) bool {
 	}
 }
 
-// Reads user input and append it to the slice
+// Appends user input to the slice
 func appendToSlice() {
 	messages.PrintAppendMessage()
-	var element int
-	running := true
-	for running {
 
-		if !isInputValid(&element) {
-			messages.PrintErrorInputMessage()
-			continue
-		}
-		running = false
-	}
-	dynamarray = append(dynamarray, element)
+	dynamarray = append(dynamarray, readUserInput())
 }
 
-// Reads user input and prepends it to the slice
+// Prepends the user input to the slice
 func prependToSlice() {
 	messages.PrintPreppendMessage()
-	var element int
-	running := true
-	for running {
 
-		if !isInputValid(&element) {
-			messages.PrintErrorInputMessage()
-			continue
-		}
-		running = false
-	}
-
-	var temp = []int{element}
+	var temp = []int{readUserInput()}
 	dynamarray = append(temp, dynamarray...)
 }
 
-// Reads user input and validates it. Returns true if input is a valid int,
-// false otherwise
-func isInputValid(element *int) bool {
+// Reads the user input
+func readUserInput() int {
+	running := true
 	var input int
-	_, inputErr := fmt.Scanf("%d", &input)
-	fmt.Println(inputErr)
-	if inputErr != nil {
-		return false
+	for running {
+		_, inputErr := fmt.Scanf("%d", &input)
+		if inputErr != nil {
+			messages.PrintErrorInputMessage()
+			continue
+		}
+		running = false
 	}
-	*element = input
-	return true
+	return input
 }
