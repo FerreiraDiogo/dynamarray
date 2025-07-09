@@ -10,7 +10,7 @@ const INVALID_INPUT_CHARACTERS = "+_)(*&¨%$#@!\\/|:;>.<,}]^~{[]´`)"
 var dynamarray []int
 
 func init() {
-	dynamarray = make([]int, 0)
+	dynamarray = make([]int, 0, 100)
 }
 
 func main() {
@@ -42,6 +42,9 @@ func selectOption(input int) bool {
 	case 2:
 		prependToSlice()
 		return true
+	case 3:
+		insertInPosition()
+		return true
 	case 4:
 		messages.PrettyPrint(dynamarray)
 		return true
@@ -49,6 +52,29 @@ func selectOption(input int) bool {
 		messages.PrintErrorInputMessage()
 		return true
 	}
+}
+
+// inserts user input in user specified position
+func insertInPosition() {
+	messages.PrintInsertValueMessage()
+	valueInput := readUserInput()
+	messages.PrintInsertPositionValueMesage()
+	positionInput := readUserInput()
+	insert(valueInput, positionInput)
+}
+
+// Inserts a value into specified position, overwriting it's content. If
+// position is beyond slice's length, appends the value to the slice.
+func insert(valueInput, positionInput int) {
+
+	if positionInput >= len(dynamarray) {
+		messages.PrintInvalidPositionValueMessage()
+		dynamarray = append(dynamarray, valueInput)
+	} else {
+		dynamarray[positionInput] = valueInput
+
+	}
+
 }
 
 // Appends user input to the slice

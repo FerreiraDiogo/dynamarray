@@ -32,3 +32,14 @@ func PrintAppendMessage() {
 func PrintPreppendMessage() {
 	fmt.Println("Insert the value to be prepended to the slice")
 }
+
+func PrintInsertValueMessage() {
+	fmt.Println("Insert the value to be inserted in the slice.")
+}
+
+func PrintInsertPositionValueMesage() {
+	fmt.Println("Now type the index to which it should be inserted. Please note that the element in the selected index will be overwriten.")
+}
+func PrintInvalidPositionValueMessage() {
+	fmt.Println("You can't insert beyond the slice's length. Your input will be appended")
+}
