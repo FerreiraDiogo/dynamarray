@@ -43,3 +43,18 @@ func PrintInsertPositionValueMesage() {
 func PrintInvalidPositionValueMessage() {
 	fmt.Println("You can't insert beyond the slice's length. Your input will be appended")
 }
+func PrintRemoveValueMessage() {
+	fmt.Println("Remove by index or value?\n1 - Index\n2 - Value")
+}
+
+func PrintRemoveValueByIndex() {
+	fmt.Println("Input a single index to remove the element at that position,  or a couple to remove all itens in the range, last one included.")
+}
+
+func PrintRemoveValueIfExists() {
+	fmt.Println("Input the value you want to remove.You will be warned if it doesn't exists in the slice.")
+}
+
+func PrintInexistentValueMessage() {
+	fmt.Println("Inexistent value")
+}
