@@ -61,6 +61,9 @@ func selectOption(input int) bool {
 		messages.PrettyPrint(dynamarray)
 		messages.PrintSorting(sortState)
 		return true
+	case 5:
+		findElement()
+		return true
 	case 6:
 		removeElement()
 		return true
@@ -73,6 +76,26 @@ func selectOption(input int) bool {
 	default:
 		messages.PrintErrorInputMessage()
 		return true
+	}
+}
+
+func findElement() {
+	if len(dynamarray) != 0 {
+		if sortState == enum.Unknown {
+			messages.PrintSorting(sortState)
+			reorder()
+		}
+		messages.PrintSearchValue()
+		input := readUserInput()
+		index, found := slices.BinarySearch(dynamarray, input)
+		if !found {
+			messages.PrintNoValueFound()
+		} else {
+			messages.PrintValuesFound(input, index)
+		}
+
+	} else {
+		messages.PringSliceIsEmpty()
 	}
 }
 

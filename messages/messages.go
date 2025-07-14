@@ -76,3 +76,19 @@ func PrintSorting(sortState enum.SortState) {
 		fmt.Println("The Slice is not sorted")
 	}
 }
+
+func PrintSearchValue() {
+	fmt.Println("Type the value you wish to search for:")
+}
+
+func PrintNoValueFound() {
+	fmt.Println("No integer in the slice matches the input")
+}
+
+func PrintValuesFound(input, index int) {
+	fmt.Printf("The value %d was found on %d position of the slice\n", input, index)
+}
+
+func PringSliceIsEmpty() {
+	fmt.Println("The Slice is empty")
+}
