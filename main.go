@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"dynamarray/enum"
 	"dynamarray/messages"
 	"dynamarray/sorter"
 	"errors"
@@ -16,10 +17,12 @@ const INVALID_INPUT_CHARACTERS = "+_)(*&¨%$#@!\\/|:;>.<,}]^~{[]´`)"
 
 var dynamarray []int
 var bufferedReader *bufio.Reader
+var sortState enum.SortState
 
 func init() {
 	dynamarray = make([]int, 0, 100)
 	bufferedReader = bufio.NewReader(os.Stdin)
+	sortState = enum.Unknown
 }
 
 func main() {
@@ -56,12 +59,16 @@ func selectOption(input int) bool {
 		return true
 	case 4:
 		messages.PrettyPrint(dynamarray)
+		messages.PrintSorting(sortState)
 		return true
 	case 6:
 		removeElement()
 		return true
 	case 7:
 		reorder()
+		return true
+	case 8:
+		messages.PrintSorting(sortState)
 		return true
 	default:
 		messages.PrintErrorInputMessage()
@@ -76,10 +83,17 @@ func reorder() {
 	case 1:
 		sorter.QuickSort(dynamarray, 0, len(dynamarray)-1, sorter.PartitionSortAscending)
 		messages.PrettyPrint(dynamarray)
+		setSortState(enum.SortAscending)
 	case 2:
 		sorter.QuickSort(dynamarray, 0, len(dynamarray)-1, sorter.PartitionSortDescending)
 		messages.PrettyPrint(dynamarray)
+		setSortState(enum.SortDescending)
 	}
+}
+
+func setSortState(state enum.SortState) {
+	sortState = state
+	messages.PrintSorting(sortState)
 }
 
 func removeElement() {
