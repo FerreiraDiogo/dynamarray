@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"dynamarray/messages"
+	"dynamarray/sorter"
 	"errors"
 	"fmt"
 	"os"
@@ -59,9 +60,25 @@ func selectOption(input int) bool {
 	case 6:
 		removeElement()
 		return true
+	case 7:
+		reorder()
+		return true
 	default:
 		messages.PrintErrorInputMessage()
 		return true
+	}
+}
+
+func reorder() {
+	messages.PrintSortMessage()
+	option := readUserInput()
+	switch option {
+	case 1:
+		sorter.QuickSort(dynamarray, 0, len(dynamarray)-1, sorter.PartitionSortAscending)
+		messages.PrettyPrint(dynamarray)
+	case 2:
+		sorter.QuickSort(dynamarray, 0, len(dynamarray)-1, sorter.PartitionSortDescending)
+		messages.PrettyPrint(dynamarray)
 	}
 }
 
@@ -120,10 +137,10 @@ func readMultipleInput(reader *bufio.Reader) ([]int, error) {
 
 	convertedInput := make([]int, 0, len(strNumbers))
 	for _, v := range strNumbers {
-		conv, _ := strconv.Atoi(v)
+		conv, err := strconv.Atoi(v)
 		if err != nil {
 			fmt.Printf("Invalid input: %s is not an integer. Skipping.\n", v)
-			continue // Skip invalid entries
+			continue
 		}
 		convertedInput = append(convertedInput, conv)
 	}
