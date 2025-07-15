@@ -45,6 +45,7 @@ func main() {
 	messages.PrintGoodbyeMessage()
 }
 
+// Prints all the program's options
 func selectOption(input int) bool {
 	switch input {
 	case 0:
@@ -83,6 +84,7 @@ func selectOption(input int) bool {
 	}
 }
 
+// Shows statistics functions that are run on the slices elements
 func showStatistics() {
 	if len(dynamarray) != 0 {
 		if sortState == enum.Unknown {
@@ -103,6 +105,7 @@ func showStatistics() {
 	}
 }
 
+// finds and returns an element and its indexs. If its not found, prints a warning message
 func findElement() {
 	if len(dynamarray) != 0 {
 		if sortState == enum.Unknown {
@@ -123,6 +126,7 @@ func findElement() {
 	}
 }
 
+// sorts the array on ascending or descending order, given by user input
 func reorder() {
 	messages.PrintSortMessage()
 	option := readUserInput()
@@ -138,11 +142,13 @@ func reorder() {
 	}
 }
 
+// sets the sortState flag
 func setSortState(state enum.SortState) {
 	sortState = state
 	messages.PrintSorting(sortState)
 }
 
+// gives options to user to select which way to remove elements from the slice
 func removeElement() {
 	messages.PrintRemoveValueMessage()
 	option := readUserInput()
@@ -157,6 +163,7 @@ func removeElement() {
 
 }
 
+// wrapper function for removal of values from the slice
 func removeFromSlice(bufferedReader *bufio.Reader, strategy func(value []int) []int) []int {
 	input, err := readMultipleInput(bufferedReader)
 	if err != nil {
@@ -167,6 +174,7 @@ func removeFromSlice(bufferedReader *bufio.Reader, strategy func(value []int) []
 	}
 }
 
+// removes a value from the slice on the given index if it exists, prints a warning message otherwise
 func removeByIndexes(indexesSlice []int) []int {
 	if len(indexesSlice) == 1 {
 		return slices.Delete(dynamarray, indexesSlice[0], indexesSlice[0]+1)
@@ -174,6 +182,7 @@ func removeByIndexes(indexesSlice []int) []int {
 	return slices.Delete(dynamarray, indexesSlice[0], indexesSlice[1]+1)
 }
 
+// removes a value from the slice if it exists, prints a warning message otherwise
 func removeByValue(value []int) []int {
 	for i, v := range dynamarray {
 		if v == value[0] {
@@ -184,6 +193,7 @@ func removeByValue(value []int) []int {
 	return dynamarray
 }
 
+// reads multiple values in a single input
 func readMultipleInput(reader *bufio.Reader) ([]int, error) {
 	input, err := reader.ReadString('\n')
 	if err != nil {
