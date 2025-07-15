@@ -4,9 +4,13 @@ import (
 	"errors"
 )
 
+const (
+	EMPTY_SLICE = "the slice is empty"
+)
+
 func Mean(list []int) (float32, error) {
 	if len(list) == 0 {
-		return 0, errors.New("the slice is empty")
+		return 0, errors.New(EMPTY_SLICE)
 	}
 	acc := 0
 	for _, v := range list {
@@ -18,7 +22,7 @@ func Mean(list []int) (float32, error) {
 
 func Median(list []int) (float32, error) {
 	if len(list) == 0 {
-		return 0, errors.New("the slice is empty")
+		return 0, errors.New(EMPTY_SLICE)
 	}
 
 	if len(list)%2 == 0 {
@@ -31,7 +35,7 @@ func Median(list []int) (float32, error) {
 
 func Mode(list []int) (int, int, error) {
 	if len(list) == 0 {
-		return 0, 0, errors.New("the slice is empty")
+		return 0, 0, errors.New(EMPTY_SLICE)
 	}
 	valuesMap := make(map[int]int, 0)
 	for _, v := range list {
