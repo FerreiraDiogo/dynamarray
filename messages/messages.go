@@ -9,7 +9,7 @@ func PrintWelcomeMessage() {
 	fmt.Println("==========Dynamarray V1.0.0==========")
 	fmt.Println("==========     Options     ==========")
 	fmt.Print("0 - Quit Program\n1 - Append Integer to Slice\n2 - Prepend Integer to Slice\n3 - Insert Integer into especified position\n" +
-		"4 - List all integers\n5 - Find integer\n6 - Remove integer\n7 - Sort\n8 - View sorting state\n")
+		"4 - List all integers\n5 - Find integer\n6 - Remove integer\n7 - Sort\n8 - View sorting state\n9 - View Statistic data\n")
 }
 
 func PrintGoodbyeMessage() {
@@ -91,4 +91,14 @@ func PrintValuesFound(input, index int) {
 
 func PringSliceIsEmpty() {
 	fmt.Println("The Slice is empty")
+}
+
+func PrintStatisticData(media, mediana float32, modaKey, modaValue int) {
+	fmt.Printf("The mean value of the slice is %f\nIt's median value is %f\nAnd the mode value is %d with %d occurrences\n\n", media, mediana, modaKey, modaValue)
+}
+
+func PrintErrorMessages(errs ...error) {
+	for _, m := range errs {
+		fmt.Println(m)
+	}
 }

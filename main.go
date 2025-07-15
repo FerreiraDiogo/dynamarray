@@ -5,6 +5,7 @@ import (
 	"dynamarray/enum"
 	"dynamarray/messages"
 	"dynamarray/sorter"
+	"dynamarray/statistics"
 	"errors"
 	"fmt"
 	"os"
@@ -73,9 +74,32 @@ func selectOption(input int) bool {
 	case 8:
 		messages.PrintSorting(sortState)
 		return true
+	case 9:
+		showStatistics()
+		return true
 	default:
 		messages.PrintErrorInputMessage()
 		return true
+	}
+}
+
+func showStatistics() {
+	if len(dynamarray) != 0 {
+		if sortState == enum.Unknown {
+			messages.PrintSorting(sortState)
+			reorder()
+		}
+		meanValue, meanErr := statistics.Mean(dynamarray)
+		medianValue, medianErr := statistics.Median(dynamarray)
+		modeKey, modeValue, modeErr := statistics.Mode(dynamarray)
+
+		if meanErr != nil || medianErr != nil || modeErr != nil {
+			messages.PrintErrorMessages(meanErr, medianErr, modeErr)
+		} else {
+			messages.PrintStatisticData(meanValue, medianValue, modeKey, modeValue)
+		}
+	} else {
+		messages.PringSliceIsEmpty()
 	}
 }
 
