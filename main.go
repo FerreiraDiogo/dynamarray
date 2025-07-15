@@ -103,21 +103,6 @@ func showStatistics() {
 	}
 }
 
-func sapoStatistics() {
-	if sortState == enum.Unknown {
-		messages.PrintSorting(sortState)
-		reorder()
-	}
-}
-
-func validateSizeWith(callback func()) {
-	if len(dynamarray) != 0 {
-		callback()
-	} else {
-		messages.PringSliceIsEmpty()
-	}
-}
-
 func findElement() {
 	if len(dynamarray) != 0 {
 		if sortState == enum.Unknown {
