@@ -89,9 +89,9 @@ func showStatistics() {
 			messages.PrintSorting(sortState)
 			reorder()
 		}
-		meanValue, meanErr := statistics.Media(dynamarray)
-		medianValue, medianErr := statistics.Mediana(dynamarray)
-		modeKey, modeValue, modeErr := statistics.Moda(dynamarray)
+		meanValue, meanErr := statistics.Mean(dynamarray)
+		medianValue, medianErr := statistics.Median(dynamarray)
+		modeKey, modeValue, modeErr := statistics.Mode(dynamarray)
 
 		if meanErr != nil || medianErr != nil || modeErr != nil {
 			messages.PrintErrorMessages(meanErr, medianErr, modeErr)

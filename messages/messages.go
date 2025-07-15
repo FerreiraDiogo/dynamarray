@@ -93,8 +93,8 @@ func PringSliceIsEmpty() {
 	fmt.Println("The Slice is empty")
 }
 
-func PrintStatisticData(media, mediana, modaKey, modaValue int) {
-	fmt.Printf("The mean value of the slice is %d\nIt's median value is %d\nAnd the mode value is %d with %d occurrences\n\n", media, mediana, modaKey, modaValue)
+func PrintStatisticData(media, mediana float32, modaKey, modaValue int) {
+	fmt.Printf("The mean value of the slice is %f\nIt's median value is %f\nAnd the mode value is %d with %d occurrences\n\n", media, mediana, modaKey, modaValue)
 }
 
 func PrintErrorMessages(errs ...error) {
